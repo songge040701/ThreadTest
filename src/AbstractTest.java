@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
 
 public class AbstractTest {
 	//线程数
-	public static int threadNum = 1;
+	public static int threadNum = 4;
 	//任务数
 	public static int taskNum = 20;
 	//是否打印执行结果
