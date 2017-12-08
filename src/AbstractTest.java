@@ -9,51 +9,51 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class AbstractTest {
-	//Ïß³ÌÊı
+	//çº¿ç¨‹æ•°
 	public static int threadNum = 1;
-	//ÈÎÎñÊı
+	//ä»»åŠ¡æ•°
 	public static int taskNum = 20;
-	//ÊÇ·ñ´òÓ¡Ö´ĞĞ½á¹û
+	//æ˜¯å¦æ‰“å°æ‰§è¡Œç»“æœ
 	public static boolean isPrintResult = false;
-	//²âÊÔ´ÎÊı
+	//æµ‹è¯•æ¬¡æ•°
 	public static int test_time = 5;
 	
 	public static void main(String arg[]) {
-		//ÊµÀı»¯Ïß³Ì³Ø
+		//å®ä¾‹åŒ–çº¿ç¨‹æ± 
 		ExecutorService exec = Executors.newFixedThreadPool(threadNum);
-		//ÊµÀı»¯ÈÎÎñ¼¯ºÏ
+		//å®ä¾‹åŒ–ä»»åŠ¡é›†åˆ
 		Set<Callable<String>> callableSet = new HashSet<Callable<String>>();
-		//ÊµÀı»¯½á¹û¼¯ºÏ
+		//å®ä¾‹åŒ–ç»“æœé›†åˆ
 		List<Future<String>> returnList = null;
 		try {
-			//Ìí¼Ó´ıÖ´ĞĞÈÎÎñ
+			//æ·»åŠ å¾…æ‰§è¡Œä»»åŠ¡
 			for(int i = 0; i < taskNum; i++) {
-				//¸ù¾İ²âÊÔÈËtask¸ü»»¡¾ThreadForTest¡¿Àà
+				//æ ¹æ®æµ‹è¯•äººtaskæ›´æ¢ã€ThreadForTestã€‘ç±»
 				Callable<String> tft = new ThreadForTest(String.valueOf(i));
 				callableSet.add(tft);
 			}
 			for(int num = 0; num < test_time; num ++) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-				//´òÓ¡ÈÎÎñ¿ªÊ¼Ê±¼ä
+				//æ‰“å°ä»»åŠ¡å¼€å§‹æ—¶é—´
 				System.out.println(sdf.format(new Date()));
 				long starTime=System.currentTimeMillis();
-				//Ö´ĞĞÈÎÎñ
+				//æ‰§è¡Œä»»åŠ¡
 				returnList = exec.invokeAll(callableSet);
 				long endTime=System.currentTimeMillis();
-				//´òÓ¡ÈÎÎñ½áÊøÊ±¼ä
+				//æ‰“å°ä»»åŠ¡ç»“æŸæ—¶é—´
 				System.out.println(sdf.format(new Date()));
 				long Time=endTime-starTime;
-				System.out.println("TaskÖ´ĞĞÊ±¼ä£º" + Time + "ºÁÃë");
+				System.out.println("æ‰§è¡Œæ—¶é—´ï¼š" + Time + "æ¯«ç§’");
 			
 				if(isPrintResult) {
-					//´òÓ¡½á¹û
-					System.out.println("===================Ö´ĞĞ½á¹ûstart===================");
+					//æ‰“å°ç»“æœ
+					System.out.println("===================æ‰§è¡Œç»“æœstart===================");
 					for(Future<String> ftemp : returnList) {
 						if(ftemp.isDone()) {
 							System.out.println(ftemp.get());
 						}
 					}
-					System.out.println("===================Ö´ĞĞ½á¹ûend===================");
+					System.out.println("===================æ‰§è¡Œç»“æœend===================");
 				}
 			}
 			exec.shutdown();
