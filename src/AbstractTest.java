@@ -15,6 +15,8 @@ public class AbstractTest {
 	public static int taskNum = 20;
 	//是否打印执行结果
 	public static boolean isPrintResult = false;
+	//测试次数
+	public static int test_time = 5;
 	
 	public static void main(String arg[]) {
 		//实例化线程池
@@ -30,7 +32,7 @@ public class AbstractTest {
 				Callable<String> tft = new ThreadForTest(String.valueOf(i));
 				callableSet.add(tft);
 			}
-			for(int num = 0; num < 5; num ++) {
+			for(int num = 0; num < test_time; num ++) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
 				//打印任务开始时间
 				System.out.println(sdf.format(new Date()));
