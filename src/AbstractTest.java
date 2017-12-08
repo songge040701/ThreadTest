@@ -43,7 +43,7 @@ public class AbstractTest {
 				//打印任务结束时间
 				System.out.println(sdf.format(new Date()));
 				long Time=endTime-starTime;
-				System.out.println("执行时间：" + Time + "毫秒");
+				System.out.println("Task执行时间：" + Time + "毫秒");
 			
 				if(isPrintResult) {
 					//打印结果
